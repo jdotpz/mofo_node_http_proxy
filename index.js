@@ -8,15 +8,12 @@ var request = require("request");
 var port = 1337;
 
 var ourserver = http.createServer(function (req, resp) {
-  if (req.url === '/test') {
-
     var extracted = req.headers.host;
 
-    if (extracted == "127.0.0.1:1337") {
-//    	var msg = "we *would* wind up redirecting this in our eventual MVP^D^DLP";
-//    	resp.write(msg);
-
-      request.get('https://google.com', function(error, result) {
+    if (extracted === "127.0.0.1:1337") {
+      // we proxy all of reddit
+      var redditURL = "http://reddit.com" + req.url;
+      request.get(redditURL, function(error, result) {
 
         if (error) {
           resp.write("there was an error requesting reddit (oh shit!)");
@@ -28,13 +25,10 @@ var ourserver = http.createServer(function (req, resp) {
         resp.end();
       });
 
-    }
-
     else {
       resp.write("there was a header.host mismatch!");
       resp.end();
     }
-
   }
 });
 
