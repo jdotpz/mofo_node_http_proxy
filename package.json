@@ -9,5 +9,8 @@
     "url" : "https://github.com/jdotpz/mofo_node_http_proxy.git"
   },
   "url": "http://redirector.mofoprod.net",
-  "email": "devops@mozillafoundation.org"
+  "email": "devops@mozillafoundation.org",
+  "dependencies": {
+    "request": "~2.34.0"
+  }
 }
