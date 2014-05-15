@@ -8,8 +8,19 @@ var port = 1337;
 var ourserver = http.createServer(function (req, resp) {
   if (req.url === '/test') {
 
-    console.log(req);
+    debugger;
+    var extracted = req.headers.host;
 
+    if (extracted == "127.0.0.1:1337") {
+    	var msg = "we *would* wind up redirecting this in our eventual MVP^D^DLP";
+    	resp.write(msg);
+    }
+
+    else {
+      resp.write("there was a header.host mismatch!");
+    }
+
+    resp.end();
   }
 });
 
