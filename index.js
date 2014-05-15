@@ -3,24 +3,38 @@ var ourlib = require("./lib/redirector");
 // let's test request
 
 var http = require("http");
+var request = require("request");
+
 var port = 1337;
 
 var ourserver = http.createServer(function (req, resp) {
   if (req.url === '/test') {
 
-    debugger;
     var extracted = req.headers.host;
 
     if (extracted == "127.0.0.1:1337") {
-    	var msg = "we *would* wind up redirecting this in our eventual MVP^D^DLP";
-    	resp.write(msg);
+//    	var msg = "we *would* wind up redirecting this in our eventual MVP^D^DLP";
+//    	resp.write(msg);
+
+      request.get('https://google.com', function(error, result) {
+
+        if (error) {
+          resp.write("there was an error requesting reddit (oh shit!)");
+          resp.write( JSON.stringify(error) );
+          return console.error(error);
+        }
+
+        resp.write( result.body );
+        resp.end();
+      });
+
     }
 
     else {
       resp.write("there was a header.host mismatch!");
+      resp.end();
     }
 
-    resp.end();
   }
 });
 
