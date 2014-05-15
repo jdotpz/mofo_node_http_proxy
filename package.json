@@ -1,0 +1,6 @@
+{
+  "name": "mofonodehttpproxy",
+  "version": "0.0.0",
+  "description": "MoFo redirector and proxy",
+  "main": "./lib/redirector.js",
+  },

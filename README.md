@@ -1,4 +1,4 @@
-mofo_node_http_proxy
+#mofo_node_http_proxy
 ====================
 
-App to look at Host Headers and proxy or redirect based on those.
+App to provide multiple app/url redirecting and proxying based on Host Header.
